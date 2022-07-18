@@ -1,0 +1,23 @@
+﻿@inject CheckBoxController CheckBoxController
+
+<div class="row">
+    <div class="message_content">
+        @Message.MessageContent
+    </div>
+    <div class="checkbox_area">
+        <input type="checkbox" @bind=isChecked @onclick="() => CheckBoxController.ToggleMessage(Message)"/>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public Message Message { get; set; }
+
+    private bool isChecked { get; set; }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        isChecked = false;
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}
